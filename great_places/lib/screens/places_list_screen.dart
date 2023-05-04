@@ -29,7 +29,7 @@ class PlacesListScreen extends StatelessWidget {
             ? const Center(child: CircularProgressIndicator())
             : Consumer<GreatPlaces>(
                 child: const Center(
-                  child: Text('Nenhum item cadastrado'),
+                  child: Text('No item registered!'),
                 ),
                 builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
                     ? ch!
