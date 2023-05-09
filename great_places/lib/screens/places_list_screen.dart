@@ -4,22 +4,20 @@ import 'package:great_places/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class PlacesListScreen extends StatelessWidget {
-  const PlacesListScreen({super.key});
+  const PlacesListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'My Places',
-        ),
+        title: const Text('My places'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
             },
-          ),
+          )
         ],
       ),
       body: FutureBuilder(
@@ -29,7 +27,7 @@ class PlacesListScreen extends StatelessWidget {
             ? const Center(child: CircularProgressIndicator())
             : Consumer<GreatPlaces>(
                 child: const Center(
-                  child: Text('No item registered!'),
+                  child: Text('No place found!'),
                 ),
                 builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
                     ? ch!
@@ -42,6 +40,8 @@ class PlacesListScreen extends StatelessWidget {
                             ),
                           ),
                           title: Text(greatPlaces.itemByIndex(i).title),
+                          subtitle: Text(
+                              greatPlaces.itemByIndex(i).location!.address!),
                           onTap: () {},
                         ),
                       ),
